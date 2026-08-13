@@ -38,9 +38,9 @@ Systems the application depends on but does not own.
 | **Regulatory Reporting System** | Compliance reporting to environmental authorities (e.g., CPCB-style reporting) — quantities recycled, environmental disclosures |
 
 **Removed from scope (and why):**
-- ~~AI Classifier / Scanner Engine~~ — replaced by a manual form where users enter device details (model number, purchase year, etc.)
-- ~~Payment / UPI Gateway~~ — replaced by an internal points/coins system; no real-money transactions leave the platform
-- ~~Maps / Geolocation API~~ — replaced by manual collector-driven status updates through the Notification Service
+- AI Classifier / Scanner Engine — replaced by a manual form where users enter device details (model number, purchase year, etc.)
+- Payment / UPI Gateway — replaced by an internal points/coins system; no real-money transactions leave the platform
+- Maps / Geolocation API — replaced by manual collector-driven status updates through the Notification Service
 
 ---
 
