@@ -50,6 +50,7 @@ The user chooses the **Register E-Waste** option and wants to add an e-waste ite
 2. User cancels the registration.
 3. System discards the entered information and does not create an e-waste record.
 
+
 ## 2. Request Pickup
 
 ### Primary Actor
@@ -99,6 +100,7 @@ The user chooses **Request Pickup** for one or more registered e-waste items.
 2. System informs the user that the item cannot be included in another pickup request.
 3. User selects another eligible item.
 4. System resumes the main flow from Step 3.
+
 
 ## 3. Track E-Waste Status
 
