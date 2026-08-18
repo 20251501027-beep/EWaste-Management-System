@@ -1,0 +1,106 @@
+@startuml
+
+title E-Waste Collection System - Domain Class Diagram
+
+' =========================================================
+' INTERFACE
+' =========================================================
+
+interface Trackable {
+    + trackStatus() : Status
+}
+
+
+' =========================================================
+' DOMAIN CLASSES
+' =========================================================
+
+class "E-Waste Item" as EWasteItem {
+    - itemId : String
+    - itemType : String
+    - category : String
+    - description : String
+    - weight : double
+
+    + registerItem() : void
+    + updateDetails(description : String) : void
+    + updateStatus(status : Status) : void
+    + trackStatus() : Status
+}
+
+
+class "Status" as Status {
+    - statusId : String
+    - statusName : String
+    - updatedAt : Date
+
+    + updateStatus(statusName : String) : void
+    + getStatus() : String
+}
+
+
+class "Pickup Request" as PickupRequest {
+    - requestId : String
+    - requestDate : Date
+    - pickupAddress : String
+    - requestStatus : String
+
+    + requestPickup() : void
+    + addItem(item : EWasteItem) : void
+    + cancelRequest() : void
+}
+
+
+' =========================================================
+' SUPPORTING CLASSES
+' =========================================================
+
+class "Pickup Schedule" as PickupSchedule {
+    - pickupDate : Date
+    - pickupTime : Time
+
+    + schedulePickup() : void
+    + reschedule() : void
+}
+
+
+class "Reward Service" as RewardService {
+    - pointsPerItem : int
+
+    + calculatePoints(item : EWasteItem) : int
+    + calculateTotalPoints(items : List<EWasteItem>) : int
+}
+
+
+' =========================================================
+' RELATIONSHIPS
+' =========================================================
+
+' Aggregation:
+' A pickup request contains one or more e-waste items.
+' Items can exist independently of the request.
+PickupRequest "1" o-- "1..*" EWasteItem : contains
+
+
+' Composition:
+' A pickup schedule belongs to exactly one pickup request
+' and is created/managed as part of that request.
+PickupRequest "1" *-- "1" PickupSchedule : has
+
+
+' Association:
+' Each e-waste item has one current status.
+EWasteItem "1" --> "1" Status : has current status
+
+
+' Dependency:
+' Reward Service uses E-Waste Item information
+' to calculate reward points.
+RewardService ..> EWasteItem : calculates points for
+
+
+' Realization:
+' E-Waste Item implements Trackable.
+EWasteItem ..|> Trackable
+
+@enduml
