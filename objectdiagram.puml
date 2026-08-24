@@ -1,0 +1,71 @@
+@startuml
+
+title E-Waste Collection System - Object Diagram (Concrete Scenario)
+
+' =========================================================
+' OBJECT INSTANCES WITH CONCRETE VALUES
+' =========================================================
+object "<u>req101 : PickupRequest</u>" as req101 {
+    requestId = "REQ-2026-0818"
+    requestDate = 2026-08-18
+    pickupAddress = "123 Tech Park, Sector 28, Gandhinagar"
+    requestStatus = "SCHEDULED"
+}
+
+object "<u>sched101 : PickupSchedule</u>" as sched101 {
+    pickupDate = 2026-08-20
+    pickupTime = 10:30:00
+}
+
+object "<u>item1 : EWasteItem</u>" as item1 {
+    itemId = "EWT-001"
+    itemType = "Laptop"
+    category = "Consumer Electronics"
+    description = "Dell XPS 13 with cracked screen"
+    weight = 1.25
+}
+
+object "<u>item2 : EWasteItem</u>" as item2 {
+    itemId = "EWT-002"
+    itemType = "Smartphone"
+    category = "Mobile Devices"
+    description = "Old iPhone 8, battery swollen"
+    weight = 0.18
+}
+
+object "<u>status1 : Status</u>" as status1 {
+    statusId = "ST-01"
+    statusName = "REGISTERED"
+    updatedAt = 2026-08-18
+}
+
+object "<u>status2 : Status</u>" as status2 {
+    statusId = "ST-02"
+    statusName = "IN_TRANSIT"
+    updatedAt = 2026-08-19
+}
+
+object "<u>rewardService : RewardService</u>" as rewardService {
+    pointsPerItem = 50
+}
+
+' =========================================================
+' OBJECT LINKS (INSTANTIATED RELATIONSHIPS)
+' =========================================================
+
+' Composition: PickupRequest has a PickupSchedule
+req101 *-- sched101
+
+' Aggregation: PickupRequest contains EWasteItems
+req101 o-- item1
+req101 o-- item2
+
+' Association: Each EWasteItem has a current Status
+item1 --> status1
+item2 --> status2
+
+' Dependency: RewardService operates on items
+rewardService ..> item1
+rewardService ..> item2
+
+@enduml
