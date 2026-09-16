@@ -1,0 +1,87 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam usecase {
+    BackgroundColor #DCE6F1
+    BorderColor #6E8EB5
+}
+
+actor User
+actor Collector
+actor Admin
+actor "Recycling Centre" as RecyclingCentre
+
+rectangle "EcoLoop E-Waste Management System" {
+
+    usecase "Register/login" as UC_Register
+    usecase "Add E-waste" as UC_Add
+    usecase "Estimated value" as UC_Value
+    usecase "Profile Management" as UC_Profile
+    usecase "Schedule Pickup" as UC_Schedule
+    usecase "Select time and date" as UC_Time
+    usecase "Track Pickup" as UC_Track
+    usecase "Select address" as UC_Address
+    usecase "Reward Portal Access" as UC_Reward
+    usecase "Feedback/Rating" as UC_Feedback
+    usecase "Rate collector" as UC_Rate
+
+    usecase "View Pickup Requests" as UC_ViewRequests
+    usecase "Able to view the requests data" as UC_ViewData
+    usecase "Go to the location using address" as UC_GoLocation
+    usecase "Collect E-Waste from user" as UC_Collect
+    usecase "Update status of pickup and help user to track" as UC_UpdatePickup
+
+    usecase "Manage Users" as UC_ManageUsers
+    usecase "Manage collectors" as UC_ManageCollectors
+    usecase "Manages and approve pickup requests" as UC_Approve
+    usecase "Assigns Collector for the user according to the location" as UC_Assign
+    usecase "View the feedback and the review from the user" as UC_ViewFeedback
+    usecase "Sees the report from recycling centre and assess it" as UC_AssessReport
+    usecase "Generate Report and Give to user" as UC_GenerateReport
+    usecase "Manages the rewards and points of the user" as UC_ManageRewards
+    usecase "Manage offers for the points" as UC_Offers
+    usecase "System Management" as UC_SystemManagement
+
+    usecase "Receives E-Waste from collector" as UC_ReceiveEWaste
+    usecase "Inspect and process the waste" as UC_Inspect
+    usecase "Update status of inspection" as UC_InspectionStatus
+    usecase "Generate Report for admin to assess" as UC_RecyclingReport
+
+    User --> UC_Register
+    User --> UC_Add
+    User --> UC_Profile
+    User --> UC_Schedule
+    User --> UC_Track
+    User --> UC_Reward
+    User --> UC_Feedback
+
+    UC_Add ..> UC_Value : <<extend>>
+    UC_Schedule ..> UC_Time : <<include>>
+    UC_Track ..> UC_Address : <<include>>
+    UC_Feedback ..> UC_Rate : <<extend>>
+
+    Collector --> UC_ViewRequests
+    Collector --> UC_ViewData
+    Collector --> UC_GoLocation
+    Collector --> UC_Collect
+    Collector --> UC_UpdatePickup
+
+    Admin --> UC_ManageUsers
+    Admin --> UC_ManageCollectors
+    Admin --> UC_Approve
+    Admin --> UC_Assign
+    Admin --> UC_ViewFeedback
+    Admin --> UC_AssessReport
+    Admin --> UC_ManageRewards
+    Admin --> UC_SystemManagement
+
+    UC_AssessReport ..> UC_GenerateReport : <<include>>
+    UC_ManageRewards ..> UC_Offers : <<include>>
+
+    RecyclingCentre --> UC_ReceiveEWaste
+    RecyclingCentre --> UC_Inspect
+    RecyclingCentre --> UC_InspectionStatus
+    RecyclingCentre --> UC_RecyclingReport
+}
+
+@enduml
