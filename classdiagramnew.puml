@@ -1,0 +1,232 @@
+@startuml
+
+title E-Waste Collection System - Domain Class Diagram (Virtual Inheritance)
+
+' ================= INTERFACE =================
+
+interface Trackable {
+
++ trackStatus() : Status
+
+}
+' ================= ITEM HIERARCHY =================
+
+abstract class "E-Waste Item" as EWasteItem {
+
+# itemId : String
+
+# itemType : String
+
+# category : String
+
+# description : String
+
+# weight : double
+
++ EWasteItem()
+
++ EWasteItem(id, type, cat, desc, w)
+
++ {abstract} displayInfo() : void
+
++ getItemId() : String
+
++ getWeight() : double
+
++ getCategory() : String
+
+}
+class "Phone" as Phone {
+
+# brand : String
+
+# model : String
+
+# storage : int
+
++ Phone()
+
++ Phone(id, type, cat, desc, w, brand, model, storage)
+
++ displayInfo() : void
+
+}
+class "SmartPhone" as SmartPhone {
+
+- operatingSystem : String
+
+
++ SmartPhone()
+
++ SmartPhone(id, type, cat, desc, w, brand, model, storage, os)
+
++ displayInfo() : void
+
+}
+class "Laptop" as Laptop {
+
+# brand : String
+
+# model : String
+
+# ram : int
+
++ Laptop()
+
++ Laptop(id, type, cat, desc, w, brand, model, ram)
+
++ displayInfo() : void
+
+}
+class "Charger" as Charger {
+
+- mfgYear : int
+
+
+- capacity : int
+
+
++ Charger()
+
++ Charger(id, type, cat, desc, w, brand, model, storage, ram, mfgYear, capacity)
+
++ getCapacity() : int
+
++ displayInfo() : void
+
+}
+class "Battery" as Battery {
+
+- batteryType : String
+
+
+- capacity : double
+
+
++ Battery()
+
++ Battery(id, type, cat, desc, w, batteryType, capacity)
+
++ displayInfo() : void
+
+}
+' ================= REQUEST / STATUS =================
+
+class "Status" as Status {
+
+- statusId : int
+
+
+- statusName : String
+
+
++ Status()
+
++ Status(id : int, name : String)
+
++ setStatus(name : String) : void
+
++ getStatusName() : String
+
++ displayStatus() : void
+
+}
+class "Pickup Request" as PickupRequest {
+
+- requestId : int
+
+
+- address : String
+
+
++ PickupRequest()
+
++ PickupRequest(id : int, addr : String, s : Status, ps : PickupSchedule)
+
++ addItem(item : EWasteItem) : void
+
++ updateStatus(newStatus : String) : void
+
++ getStatus() : String
+
++ getRequestId() : int
+
++ trackStatus() : Status
+
++ displayRequest() : void
+
+}
+class "Pickup Schedule" as PickupSchedule {
+
+- date : String
+
+
+- time : String
+
+
++ PickupSchedule()
+
++ PickupSchedule(d : String, t : String)
+
++ displaySchedule() : void
+
+}
+class "Reward Service" as RewardService {
+
+- pointsPerKg : double
+
+
+- bonusPoints : double
+
+
+{static} - totalServices : int
+
++ RewardService()
+
++ RewardService(ppk : double, bp : double)
+
++ calculatePoints(item : EWasteItem) : double
+
+{static} + showTotalServices() : void
+
+}
+' ================= INHERITANCE (DIAMOND) =================
+
+EWasteItem <|-- Phone : <<virtual>>
+
+EWasteItem <|-- Laptop : <<virtual>>
+
+Phone <|-- Charger
+
+Laptop <|-- Charger
+' ================= OTHER INHERITANCE =================
+
+Phone <|-- SmartPhone
+
+EWasteItem <|-- Battery
+' ================= ASSOCIATIONS =================
+
+Battery "0..*" --> "0..1" Phone : fits
+
+PickupRequest -- "1" PickupSchedule : contains
+
+PickupRequest "1" --> "1" Status : has status
+
+PickupRequest "1" o-- "1.." EWasteItem : collects
+' ================= REALIZATION / DEPENDENCY =================
+
+PickupRequest ..|> Trackable
+
+RewardService ..> EWasteItem : uses
+note bottom of Charger
+
+Diamond: Charger -> (Phone, Laptop) -> EWasteItem.
+
+Phone and Laptop inherit EWasteItem virtually, so
+
+a Charger holds only ONE copy of the EWasteItem
+
+data (itemId, weight, ...).
+
+end note
+@enduml
