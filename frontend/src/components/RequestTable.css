@@ -1,0 +1,138 @@
+.req-table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.req-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.req-table thead {
+  background: #f9fafb;
+}
+
+.req-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: #6b7280;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.req-table td {
+  padding: 13px 16px;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+.req-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.req-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.req-table-address {
+  max-width: 220px;
+  word-break: break-word;
+  font-weight: 500;
+}
+
+.req-table-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.req-table-select {
+  padding: 5px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-family: inherit;
+  color: #374151;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.req-table-select:hover,
+.req-table-select:focus {
+  border-color: #22c55e;
+  outline: none;
+}
+
+.req-table-delete {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #dc2626;
+  font-size: 12.5px;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.req-table-delete:hover:not(:disabled) {
+  background: #fee2e2;
+  border-color: #fca5a5;
+}
+
+.req-table-delete:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.req-spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid #fca5a5;
+  border-top-color: #dc2626;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.req-table-skeleton {
+  height: 14px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 4px;
+  width: 80%;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.req-table-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 24px;
+  color: #9ca3af;
+  font-size: 14px;
+}
