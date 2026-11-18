@@ -1,6 +1,9 @@
 # EcoLoop-EWaste-Management-System
-E-Waste Collection and Recycling Management System
 E-waste management system
+
+# What we have done:-
+1. We have made a locally running website using the below stack
+2. We have also made a simple runnable terminal based program that implements the oops concept in our project
 
 # Stack used to build:-
 Frontend : Reactjs + Vite
