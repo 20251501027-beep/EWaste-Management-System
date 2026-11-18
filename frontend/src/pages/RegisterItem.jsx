@@ -101,7 +101,7 @@ export default function RegisterItem() {
         ...(form.description && { description: form.description.trim() }),
       };
       await createItem(payload);
-      showToast('success', `✅ Item "${form.id}" registered successfully!`);
+      showToast('success', `Item "${form.id}" registered successfully`);
       setForm(EMPTY_FORM);
       fetchItems();
     } catch (err) {

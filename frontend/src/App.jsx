@@ -26,7 +26,10 @@ export default function App() {
               {/* Catch-all */}
               <Route path="*" element={
                 <div className="app-404">
-                  <span style={{ fontSize: 64 }}>♻️</span>
+                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/>
+                    <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                  </svg>
                   <h2>Page Not Found</h2>
                   <p>The page you're looking for doesn't exist.</p>
                   <a href="/" className="app-404-link">Go to Dashboard</a>

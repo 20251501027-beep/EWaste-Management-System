@@ -5,7 +5,6 @@
 // as the single place that owns the formula.
 
 const POINTS_PER_KG = 10;
-
 /**
  * Calculate eco points from a list of e-waste items.
  * @param {Array} items - Array of EWasteItem documents from the backend.
@@ -16,7 +15,6 @@ export function calculateEcoRewards(items = []) {
   const totalPoints = Math.round(totalWeight * POINTS_PER_KG);
   return { totalPoints, totalWeight: parseFloat(totalWeight.toFixed(2)) };
 }
-
 /**
  * Calculate the environmental impact metrics from total weight.
  * Values are illustrative but grounded in common e-waste stats.

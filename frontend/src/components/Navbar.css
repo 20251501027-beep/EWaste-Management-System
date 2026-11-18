@@ -74,37 +74,6 @@
   flex-shrink: 0;
 }
 
-.navbar-icon-btn {
-  position: relative;
-  width: 38px;
-  height: 38px;
-  background: var(--gray-50);
-  border: 1px solid var(--gray-200);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gray-500);
-  transition: background var(--transition), border-color var(--transition), color var(--transition);
-}
-
-.navbar-icon-btn:hover {
-  background: #f0fdf4;
-  border-color: #86efac;
-  color: #16a34a;
-}
-
-.navbar-notification-dot {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  width: 7px;
-  height: 7px;
-  background: #22c55e;
-  border-radius: 50%;
-  border: 1.5px solid #fff;
-}
-
 /* Profile */
 .navbar-profile {
   display: flex;

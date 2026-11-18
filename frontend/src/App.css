@@ -51,16 +51,14 @@
   gap: 8px;
   margin-top: 4px;
   padding: 12px 28px;
-  background: linear-gradient(135deg, var(--green-500), var(--green-600));
+  background: #16a34a;
   color: #fff;
   border-radius: var(--radius-md);
   font-size: 14px;
   font-weight: 600;
-  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: background var(--transition);
 }
 
 .app-404-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+  background: #15803d;
 }

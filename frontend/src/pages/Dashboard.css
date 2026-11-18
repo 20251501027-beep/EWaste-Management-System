@@ -104,14 +104,12 @@
 }
 
 .dashboard-action-btn--primary {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  background: #16a34a;
   color: #fff;
-  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
 }
 
 .dashboard-action-btn--primary:hover {
-  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
-  transform: translateY(-1px);
+  background: #15803d;
 }
 
 .dashboard-action-btn--secondary {
@@ -143,8 +141,8 @@
 }
 
 .dashboard-impact-card {
-  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-  border: 1px solid #bbf7d0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
   border-radius: 14px;
   padding: 22px 20px;
   display: flex;
@@ -159,8 +157,17 @@
   transform: translateY(-2px);
 }
 
-.dashboard-impact-emoji {
-  font-size: 28px;
+.dashboard-impact-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #16a34a;
+  margin-bottom: 8px;
 }
 
 .dashboard-impact-value {

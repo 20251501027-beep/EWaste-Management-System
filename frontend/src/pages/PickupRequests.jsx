@@ -67,7 +67,7 @@ export default function PickupRequests() {
         time: form.time,
         status: 'Pending',
       });
-      showToast('success', '🚛 Pickup request submitted successfully!');
+      showToast('success', 'Pickup request submitted successfully');
       setForm(EMPTY_FORM);
       fetchRequests();
     } catch (err) {

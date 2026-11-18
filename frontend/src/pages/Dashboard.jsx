@@ -41,6 +41,42 @@ const icons = {
   ),
 };
 
+// ─── Impact Cards ─────────────────────────────────────────────────────────────
+const impactCards = [
+  {
+    key: 'co2',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+    ),
+    getValue: ({ co2Saved }) => `${co2Saved} kg`,
+    label: 'CO₂ Emissions Saved',
+  },
+  {
+    key: 'metal',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+      </svg>
+    ),
+    getValue: ({ metalRecovered }) => `${metalRecovered} kg`,
+    label: 'Precious Metals Recovered',
+  },
+  {
+    key: 'water',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+      </svg>
+    ),
+    getValue: ({ waterSaved }) => `${waterSaved} L`,
+    label: 'Water Saved',
+  },
+];
+
 export default function Dashboard() {
   const [items, setItems] = useState([]);
   const [requests, setRequests] = useState([]);
@@ -73,6 +109,8 @@ export default function Dashboard() {
   const pending = requests.filter((r) => r.status === 'Pending').length;
   const completed = requests.filter((r) => r.status === 'Completed').length;
   const recentItems = items.slice(0, 5);
+
+  const impactValues = { co2Saved, metalRecovered, waterSaved };
 
   return (
     <div className="dashboard">
@@ -134,23 +172,15 @@ export default function Dashboard() {
 
       {/* Environment Impact */}
       <section className="dashboard-impact">
-        <h2 className="dashboard-section-title">🌿 Environmental Impact</h2>
+        <h2 className="dashboard-section-title">Environmental Impact</h2>
         <div className="dashboard-impact-grid">
-          <div className="dashboard-impact-card">
-            <span className="dashboard-impact-emoji">🌍</span>
-            <strong className="dashboard-impact-value">{loading ? '…' : `${co2Saved} kg`}</strong>
-            <span className="dashboard-impact-label">CO₂ Emissions Saved</span>
-          </div>
-          <div className="dashboard-impact-card">
-            <span className="dashboard-impact-emoji">⚙️</span>
-            <strong className="dashboard-impact-value">{loading ? '…' : `${metalRecovered} kg`}</strong>
-            <span className="dashboard-impact-label">Precious Metals Recovered</span>
-          </div>
-          <div className="dashboard-impact-card">
-            <span className="dashboard-impact-emoji">💧</span>
-            <strong className="dashboard-impact-value">{loading ? '…' : `${waterSaved} L`}</strong>
-            <span className="dashboard-impact-label">Water Saved</span>
-          </div>
+          {impactCards.map((card) => (
+            <div key={card.key} className="dashboard-impact-card">
+              <div className="dashboard-impact-icon">{card.icon}</div>
+              <strong className="dashboard-impact-value">{loading ? '…' : card.getValue(impactValues)}</strong>
+              <span className="dashboard-impact-label">{card.label}</span>
+            </div>
+          ))}
         </div>
       </section>
 
